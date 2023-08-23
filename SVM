@@ -1,0 +1,46 @@
+# # First, we will import some libraries
+import matplotlib.pyplot as plt
+from sklearn.svm import SVC
+# I will insert these data in Python program:
+X = [[60, 100],
+[100, 150],
+[200, 160],
+[150, 100],
+[200, 200],
+[100, 300],
+[170, 140],
+[150, 120],
+[150, 350],
+[280, 200],
+[140, 200]]
+Y = [0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0]
+# Then, I will Plot them to see which type of Support Vector Machine (SVM) we will select.
+print(len(X))
+for i in range(len(Y)):
+  if Y[i]==0:
+     plt.plot(X[i][0],X[i][1],'rx')
+  if Y[i]==1:
+    plt.plot(X[i][0],X[i][1],'bo')
+plt.show() # To show the chart
+clf = SVC(kernel='linear', probability=True)
+clf.fit(X, Y)
+print("coefficient = ",clf._get_coef()) # It's give us X1 ,X2
+print("Interception = ",clf.intercept_) # It's give us b
+# the Example in python
+Height = input("please enter the Height: ")
+Weight = input("please enter the Weight: ")
+Ypred = clf.predict([[Height, Weight]])
+print(Ypred)
+if Ypred == 1:
+  print("the animal is ostrich")
+else:
+  print("the animal is horse")
+
+print("-"* 40)
+
+# #--Another answer--
+# Ask = input("Does that animal lay eggs?")
+# if Ask == "yes" or "y":
+#   print("this animal is ostrich")
+# elif Ask == "no" or "n":
+#   print("this animal is horse")  
